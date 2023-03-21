@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Simple Courses</string>
+    <string name="authorizationWelcome">Здравствуйте! Пройдите авторизацию</string>
 </resources>
