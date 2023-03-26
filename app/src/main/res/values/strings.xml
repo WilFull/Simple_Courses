@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Simple Courses</string>
-    <string name="authorizationText">Пройдите авторизацию</string>
-    <string name="authorizationWelcome">Привет!</string>
     <string name="textViewNotRegister">Ещё не зарегистрированы?</string>
+    <string name="editTextHintPassword">Пароль</string>
+    <string name="editTextHintEmail">Эл.почта</string>
+    <string name="buttonEnterToMainScreen">Войти</string>
+    <string name="editTextHintName">Имя</string>
+    <string name="btnRegistration">Зарегистрироваться</string>
+    <string name="button_arrow_back">button arrow back</string>
+    <string name="textViewRegistration">Регистрация</string>
 </resources>
