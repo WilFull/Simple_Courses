@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterFragment">
+    tools:context=".registration.view.RegisterFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextRegistrationPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/editTextHintPassword"
         app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         app:errorContentDescription="Проверьте пароль"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +26,15 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/qwerty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegistrationPassword" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextRegistrationName"
@@ -55,6 +64,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/editTextHintEmail"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegistrationName">
@@ -66,7 +76,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegistrationUser"
         android:layout_width="260dp"
         android:layout_height="60dp"
         android:layout_marginStart="50dp"

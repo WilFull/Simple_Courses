@@ -1,12 +1,12 @@
-package com.example.simplecourses
+package com.example.simplecourses.authorization
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.simplecourses.R
 import com.example.simplecourses.databinding.FragmentAuthorizationBinding
 
 class AuthorizationFragment : Fragment() {
@@ -26,8 +26,8 @@ class AuthorizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonContinueAuthorization.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_authorizationFragment_to_registerFragment)
+        binding.textViewToRegistration.setOnClickListener {
+            findNavController().navigate(R.id.action_authorizationFragment_to_registerFragment)
         }
     }
 

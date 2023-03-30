@@ -8,4 +8,8 @@
     <string name="btnRegistration">Зарегистрироваться</string>
     <string name="button_arrow_back">button arrow back</string>
     <string name="textViewRegistration">Регистрация</string>
+    <string name="errorMaxLimitName">Лимит символов превышен</string>
+    <string name="errorEmptyName">Введите имя</string>
+    <string name="errorEmptyEmail">Введите почту</string>
+    <string name="errorEmptyPassword">Введите пароль</string>
 </resources>

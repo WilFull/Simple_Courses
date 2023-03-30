@@ -7,12 +7,16 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.simplecourses.RegisterFragment"
+        android:name="com.example.simplecourses.registration.view.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/authorizationFragment"
-        android:name="com.example.simplecourses.AuthorizationFragment"
+        android:name="com.example.simplecourses.authorization.AuthorizationFragment"
         android:label="AuthorizationFragment"
         tools:layout="@layout/fragment_authorization">
         <action
