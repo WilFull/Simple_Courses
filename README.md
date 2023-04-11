@@ -1,4 +1,4 @@
-# Simple_Courses
+# Simple Courses
 This is my first Android Development project. An application for learning simple life courses.
 
 The user can:
