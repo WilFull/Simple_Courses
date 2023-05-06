@@ -59,9 +59,11 @@
 
     <Button
         android:id="@+id/buttonContinueAuthorization"
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/buttonEnterToMainScreen"
         android:textSize="20sp"
@@ -69,16 +71,17 @@
         app:layout_constraintStart_toStartOf="@+id/editTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <Button
         android:id="@+id/textViewToRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
+        android:background="?android:selectableItemBackground"
         android:text="@string/textViewNotRegister"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="@+id/buttonContinueAuthorization"
         app:layout_constraintStart_toStartOf="@+id/buttonContinueAuthorization"
-        app:layout_constraintTop_toBottomOf="@+id/buttonContinueAuthorization"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonContinueAuthorization" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

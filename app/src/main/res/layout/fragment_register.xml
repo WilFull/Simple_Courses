@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.view.RegisterFragment">
+    tools:context=".authorization.RegisterFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextRegistrationPassword"
@@ -26,15 +26,6 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/qwerty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegistrationPassword" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextRegistrationName"
