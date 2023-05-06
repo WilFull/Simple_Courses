@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "546042928799",
+    "project_id": "simple-courses",
+    "storage_bucket": "simple-courses.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546042928799:android:fe7d15fd3cb994d6438caa",
+        "android_client_info": {
+          "package_name": "com.example.simplecourses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546042928799-7houkenrqslvbpuup5m6tole0v3t2t8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYyRs-zdsf2-xCQJcyTMeihA63LToAfQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546042928799-7houkenrqslvbpuup5m6tole0v3t2t8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
