@@ -1,9 +1,9 @@
-package com.example.simplecourses.registration.repository
+package com.example.simplecourses.registrationPREVIOUS.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.simplecourses.registration.room.RegisterDatabase
-import com.example.simplecourses.registration.room.RegisterEntity
+import com.example.simplecourses.registrationPREVIOUS.room.RegisterDatabase
+import com.example.simplecourses.registrationPREVIOUS.room.RegisterEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch

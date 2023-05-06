@@ -1,4 +1,4 @@
-package com.example.simplecourses.registration.room
+package com.example.simplecourses.registrationPREVIOUS.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

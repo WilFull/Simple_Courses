@@ -1,9 +1,9 @@
-package com.example.simplecourses.registration.viewmodel
+package com.example.simplecourses.registrationPREVIOUS.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.*
-import com.example.simplecourses.registration.room.RegisterEntity
-import com.example.simplecourses.registration.repository.RegisterRepository
+import com.example.simplecourses.registrationPREVIOUS.room.RegisterEntity
+import com.example.simplecourses.registrationPREVIOUS.repository.RegisterRepository
 
 class RegisterViewModel() : ViewModel() {
 
