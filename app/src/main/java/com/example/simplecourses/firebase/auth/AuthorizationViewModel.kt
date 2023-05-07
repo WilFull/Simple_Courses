@@ -1,4 +1,4 @@
-package com.example.simplecourses.authorization.viewmodel
+package com.example.simplecourses.firebase.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

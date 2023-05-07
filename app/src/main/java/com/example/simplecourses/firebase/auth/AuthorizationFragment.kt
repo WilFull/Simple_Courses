@@ -1,4 +1,4 @@
-package com.example.simplecourses.firebaseauth
+package com.example.simplecourses.firebase.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater

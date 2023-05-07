@@ -1,4 +1,4 @@
-package com.example.simplecourses.firebaseauth
+package com.example.simplecourses.firebase.auth
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -9,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isEmpty
 import androidx.navigation.fragment.findNavController
 import com.example.simplecourses.R
 import com.example.simplecourses.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthMultiFactorException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
