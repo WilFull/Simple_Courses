@@ -1,104 +1,133 @@
 package com.example.simplecourses.firebase.auth
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isEmpty
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.simplecourses.R
 import com.example.simplecourses.databinding.FragmentRegisterBinding
-import com.example.simplecourses.registration.viewmodel.RegisterViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class RegisterFragment : Fragment() {
 
-    /*private var _binding: FragmentRegisterBinding? = null
-    private val binding get() = _binding!!*/
-    private  lateinit var binding: FragmentRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
-    private lateinit var context: Context
-   /* lateinit var strUsername: String
-    lateinit var strEmail: String
-    lateinit var strPassword: String*/
+    private lateinit var auth: FirebaseAuth
+
+    private var _binding: FragmentRegisterBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        /*binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        return binding.root*/
-        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        context = this@RegisterFragment.requireContext()
-
-        registerViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
-
-        val email = binding.editTextRegistrationEmailAddress
-        val username = binding.editTextRegistrationName
-        val password = binding.editTextRegistrationPassword
-
-
-
-        val inputUsername = binding.editTextRegistrationName.editText.toString()
-        val inputEmail = binding.editTextRegistrationEmailAddress.editText.toString()
-        val inputPassword = binding.editTextRegistrationPassword.editText.toString()
+        val inputEmail = binding.editTextRegistrationEmailAddress.editText
+        val inputPassword = binding.editTextRegistrationPassword.editText
 
         binding.imageViewBackToAutorization.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_authorizationFragment)
         }
 
         binding.btnRegistrationUser.setOnClickListener {
-            // val regex: Regex = "^[a-zA-Z0-9._%+-]+@example\\.com$".toRegex()
-            if (username.counterMaxLength > 20) {
-                username.error = getString(R.string.errorMaxLimitName)
-            }
-            else if (username.isEmpty()) {
-                username.error = getString(R.string.errorEmptyName)
-            }
-            else if (email.isEmpty()) {
-                email.error = getString(R.string.errorEmptyEmail)
-            }
-            else if (password.isEmpty()) {
-                password.error = getString(R.string.errorEmptyPassword)
-            }
-            else {
-                registerViewModel.insertData(context, username = binding.editTextRegistrationName.editText?.text.toString(),
-                    email = binding.editTextRegistrationEmailAddress.editText?.text.toString(),
-                    password = binding.editTextRegistrationPassword.editText?.text.toString())
-                // Toast.makeText(requireContext(), "$inputUsername, $inputEmail, $inputPassword",
-                    // Toast.LENGTH_LONG).show()
-                Log.e("Првиет", "$id, $inputEmail, $inputUsername, $inputPassword")
-            }
-            /*when {
-                username.counterMaxLength > 20 ->
-                    username.error = getString(R.string.errorMaxLimitName)
+            createAccount(inputEmail!!.text.toString(), inputPassword!!.text.toString())
+        }
 
-                username.isEmpty() -> username.error = getString(R.string.errorEmptyName)
-            }
+        auth = Firebase.auth
+    }
 
-            when {
-                email.isEmpty() -> email.error = getString(R.string.errorEmptyEmail)
-                // TODO: Выполнить проверку на постфикс
-            }
+    /*override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            reload()
+        }
+    }*/
 
-            when {
-                password.isEmpty() -> password.error = getString(R.string.errorEmptyPassword)
-            }*/
+    private fun createAccount(email: String, password: String) {
+        Log.d(TAG, "createAccount:$email")
+
+        if (!validateForm()) {
+            return
+        }
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        context,
+                        "Проверьте правильность введённых данных",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    updateUI(null)
+                }
+            }
+    }
+
+    private fun reload() {
+        auth.currentUser!!.reload().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                updateUI(auth.currentUser)
+                Toast.makeText(context, "Reload successful!", Toast.LENGTH_SHORT).show()
+            } else {
+                Log.e(TAG, "reload", task.exception)
+                Toast.makeText(context, "Failed to reload user.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    /*override fun onDestroyView() {
+    private fun validateForm(): Boolean {
+        var valid = true
+
+        val email = binding.editTextRegistrationEmailAddress.editText?.text.toString()
+        if (TextUtils.isEmpty(email)) {
+            binding.editTextRegistrationEmailAddress.error = "Заполните поле"
+            valid = false
+        } else {
+            binding.editTextRegistrationEmailAddress.error = null
+        }
+
+        val password = binding.editTextRegistrationPassword.editText?.text.toString()
+        if (TextUtils.isEmpty(password)) {
+            binding.editTextRegistrationPassword.error = "Заполните поле"
+            valid = false
+        } else {
+            binding.editTextRegistrationPassword.error = null
+        }
+
+        return valid
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        if (user != null) {
+            findNavController().navigate(R.id.action_registerFragment_to_authorizationFragment)
+        }
+    }
+
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }*/
+    }
 }

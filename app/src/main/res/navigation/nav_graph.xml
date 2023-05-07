@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/authorizationFragment"
-        android:name="com.example.simplecourses.authorization.AuthorizationFragment"
+        android:name="com.example.simplecourses.firebase.auth.AuthorizationFragment"
         android:label="AuthorizationFragment"
         tools:layout="@layout/fragment_authorization">
         <action

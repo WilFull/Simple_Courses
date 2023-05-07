@@ -1,4 +1,4 @@
-package com.example.simplecourses.registration.room
+package com.example.simplecourses.registrationPREVIOUS.room
 
 import android.content.Context
 import androidx.room.Database

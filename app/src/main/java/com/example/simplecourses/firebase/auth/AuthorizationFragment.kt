@@ -1,4 +1,4 @@
-package com.example.simplecourses.authorization
+package com.example.simplecourses.firebase.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,11 +29,11 @@ class AuthorizationFragment : Fragment() {
         binding.textViewToRegistration.setOnClickListener {
             findNavController().navigate(R.id.action_authorizationFragment_to_registerFragment)
         }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
