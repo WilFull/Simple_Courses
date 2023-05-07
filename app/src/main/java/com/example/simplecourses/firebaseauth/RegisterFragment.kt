@@ -2,6 +2,7 @@ package com.example.simplecourses.firebaseauth
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,28 +38,17 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val email = binding.editTextRegistrationEmailAddress
-        val password = binding.editTextRegistrationPassword
-
-        val inputEmail = binding.editTextRegistrationEmailAddress.editText.toString()
-        val inputPassword = binding.editTextRegistrationPassword.editText.toString()
+        val inputEmail = binding.editTextRegistrationEmailAddress.editText
+        val inputPassword = binding.editTextRegistrationPassword.editText
 
         binding.imageViewBackToAutorization.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_authorizationFragment)
         }
 
         binding.btnRegistrationUser.setOnClickListener {
-            // val regex: Regex = "^[a-zA-Z0-9._%+-]+@example\\.com$".toRegex()
-            if (email.isEmpty()) {
-                email.error = getString(R.string.errorEmptyEmail)
-            }
-            else if (password.isEmpty()) {
-                password.error = getString(R.string.errorEmptyPassword)
-            }
-            else {
-                createAccount(inputEmail, inputPassword)
-            }
+            createAccount(inputEmail!!.text.toString(), inputPassword!!.text.toString())
         }
+
         auth = Firebase.auth
     }
 
@@ -73,6 +63,10 @@ class RegisterFragment : Fragment() {
 
     private fun createAccount(email: String, password: String) {
         Log.d(TAG, "createAccount:$email")
+
+        if (!validateForm()) {
+            return
+        }
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
@@ -104,6 +98,28 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(context, "Failed to reload user.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun validateForm(): Boolean {
+        var valid = true
+
+        val email = binding.editTextRegistrationEmailAddress.editText?.text.toString()
+        if (TextUtils.isEmpty(email)) {
+            binding.editTextRegistrationEmailAddress.error = "Заполните поле"
+            valid = false
+        } else {
+            binding.editTextRegistrationEmailAddress.error = null
+        }
+
+        val password = binding.editTextRegistrationPassword.editText?.text.toString()
+        if (TextUtils.isEmpty(password)) {
+            binding.editTextRegistrationPassword.error = "Заполните поле"
+            valid = false
+        } else {
+            binding.editTextRegistrationPassword.error = null
+        }
+
+        return valid
     }
 
     private fun updateUI(user: FirebaseUser?) {

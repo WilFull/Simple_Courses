@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
     }
 
     // [START on_start_check_user]
