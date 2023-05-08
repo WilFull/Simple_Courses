@@ -77,7 +77,7 @@ class RegisterFragment : Fragment() {
             }
     }
 
-    private fun reload() {
+    /*private fun reload() {
         auth.currentUser!!.reload().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 updateUI(auth.currentUser)
@@ -87,7 +87,7 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(context, "Failed to reload user.", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+    }*/
 
     private fun validateForm(): Boolean {
         var valid = true
