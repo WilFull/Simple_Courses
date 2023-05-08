@@ -50,15 +50,6 @@ class RegisterFragment : Fragment() {
         auth = Firebase.auth
     }
 
-    /*override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            reload()
-        }
-    }*/
-
     private fun createAccount(email: String, password: String) {
         Log.d(TAG, "createAccount:$email")
 
