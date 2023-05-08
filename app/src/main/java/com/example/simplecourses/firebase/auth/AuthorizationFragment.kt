@@ -73,9 +73,9 @@ class AuthorizationFragment : Fragment() {
                     updateUI(null)
                 }
 
-                if (!task.isSuccessful) {
-                    // binding.status.setText(R.string.auth_failed)
-                }
+                /*if (!task.isSuccessful) {
+                    binding.status.setText(R.string.auth_failed)
+                }*/
             }
     }
 
@@ -107,14 +107,26 @@ class AuthorizationFragment : Fragment() {
         return valid
     }
 
-    /*override fun onStart() {
+    override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
             reload()
         }
-    }*/
+    }
+
+    private fun reload() {
+        auth.currentUser!!.reload().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                updateUI(auth.currentUser)
+                Toast.makeText(context, "Reload successful!", Toast.LENGTH_SHORT).show()
+            } else {
+                Log.e(TAG, "reload", task.exception)
+                Toast.makeText(context, "Failed to reload user.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
