@@ -12,4 +12,9 @@
     <string name="errorEmptyName">Введите имя</string>
     <string name="errorEmptyEmail">Введите почту</string>
     <string name="errorEmptyPassword">Введите пароль</string>
+    <string name="user">Профиль</string>
+    <string name="content_description_user">Профиль</string>
+    <string name="text_label_home">Курсы</string>
+    <string name="text_label_favorite">Избранное</string>
+    <string name="text_label_badge">Создатель</string>
 </resources>
