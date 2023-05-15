@@ -1,31 +1,30 @@
-package com.example.simplecourses.registrationPREVIOUS.room
+package com.example.simplecourses.data.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [RegisterEntity::class], version = 1, exportSchema = false)
-abstract class RegisterDatabase : RoomDatabase() {
+@Database(entities = [CoursesEntity::class], version = 1, exportSchema = false)
+abstract class CoursesDatabase : RoomDatabase() {
 
-    abstract fun registerDatabaseDao(): RegisterDatabaseDao
+    abstract fun coursesDatabaseDao(): CoursesDatabaseDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: RegisterDatabase? = null
+        private var INSTANCE: CoursesDatabase? = null
 
         /*getInstance() - это статический метод, используемый для получения экземпляра объекта.
         Он обычно используется в паттерне Singleton, когда нужно гарантировать,
         что только один экземпляр объекта существует в приложении.*/
-        fun getInstance(context: Context): RegisterDatabase {
+        fun getInstance(context: Context): CoursesDatabase {
             if (INSTANCE != null) return INSTANCE!!
-
             synchronized(this) {
 
                 INSTANCE = Room
                     .databaseBuilder(context.applicationContext,
-                        RegisterDatabase::class.java, "REGISTER_USER_DATABASE.db")
+                        CoursesDatabase::class.java, "COURSES_USER_DATABASE.db")
                     .fallbackToDestructiveMigration()
                     .build()
 
