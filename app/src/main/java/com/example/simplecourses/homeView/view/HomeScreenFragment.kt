@@ -1,20 +1,30 @@
 package com.example.simplecourses.homeView.view
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecourses.R
+import com.example.simplecourses.data.dataViewModel.CoursesViewModel
 import com.example.simplecourses.databinding.FragmentHomeScreenBinding
+import com.example.simplecourses.homeView.interfaceHomeView.OnClickListenerRecyclerView
 import com.example.simplecourses.homeView.adapter.CoursesAdapter
+import com.example.simplecourses.homeView.viewmodel.BottomNavigationViewModel
 import com.example.simplecourses.homeView.viewmodel.HomeScreenViewModel
 
-class HomeScreenFragment : Fragment() {
+class HomeScreenFragment : Fragment(), OnClickListenerRecyclerView {
 
+    private val bottomNavigationViewModel: BottomNavigationViewModel by activityViewModels()
+
+    private lateinit var coursesViewModel: CoursesViewModel
+    private lateinit var context: Context
     private lateinit var recyclerView : RecyclerView
     private lateinit var arrayList : ArrayList<Courses>
     private lateinit var adapter : CoursesAdapter
@@ -26,25 +36,17 @@ class HomeScreenFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: HomeScreenViewModel
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.context = context
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         return binding.root
-
-
-        /*imageId = arrayList(
-            R.drawable.blue_brown_subtle,
-            R.drawable.blue_yellow_vibrant,
-            R.drawable.blue_brown_vibrant,
-            R.drawable.cream_red_vibrant,
-            R.drawable.cyan_blue_vibrant,
-            R.drawable.green_blue_vibrant,
-            R.drawable.green_indigo_vibrant,
-            R.drawable.leaf_green_subtle,
-            R.drawable.red_green_subtle
-        )*/
 
     }
 
@@ -81,16 +83,42 @@ class HomeScreenFragment : Fragment() {
         arrayList.add(Courses(R.drawable.red_green_subtle,
             "Курс №9", "Примерно на 30 минут"))
 
-        adapter = CoursesAdapter(arrayList)
+        adapter = CoursesAdapter(arrayList, this)
         recyclerView.adapter = adapter
 
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            bottomNavigationViewModel.selectedItemId = item.itemId
+            when (item.itemId) {
+                R.id.homeScreenFragment -> {
+                    true
+                }
+                R.id.secondFragment -> {
+                    findNavController().navigate(R.id.action_homeScreenFragment_to_secondFragment)
+                    true
+                }
+                R.id.creatorFragment -> {
+                    findNavController().navigate(R.id.action_homeScreenFragment_to_creatorFragment)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        bottomNavigationView.selectedItemId = bottomNavigationViewModel.selectedItemId
+
         binding.topAppBar.setNavigationOnClickListener {
-            // Handle navigation icon press
+            // TODO: Handle navigation icon press
         }
 
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.user -> {
+                    // Тестирование БД
+                    /*val header = "Заголовок"
+                    val subheading = "Подзаголовок"
+                    val content = "Содержимое"
+                    val coursesViewModel = CoursesViewModel()
+                    coursesViewModel.insertData(context, header, subheading, content)*/
                     // TODO: переход на фрагмент профиля
                     true
                 }
@@ -103,9 +131,26 @@ class HomeScreenFragment : Fragment() {
     }
 
 
+    override fun onClick(course: Courses) {
+        // Создание экземпляра целевого фрагмента
+        val targetFragment = ContentFragment()
+
+        // Создание Bundle для передачи аргументов
+        val args = Bundle().apply {
+            putString("titleImage", course.titleImage.toString())
+            putString("titleSubheading", course.title_subheading)
+            putString("titleHeading", course.title_heading)
+        }
+
+        // Установка аргументов для фрагмента
+        targetFragment.arguments = args
+
+        findNavController().navigate(R.id.action_homeScreenFragment_to_contentFragment, args)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

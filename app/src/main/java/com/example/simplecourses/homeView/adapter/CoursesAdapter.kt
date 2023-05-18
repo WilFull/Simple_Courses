@@ -3,13 +3,15 @@ package com.example.simplecourses.homeView.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecourses.R
+import com.example.simplecourses.databinding.ListItemBinding
+import com.example.simplecourses.homeView.interfaceHomeView.OnClickListenerRecyclerView
 import com.example.simplecourses.homeView.view.Courses
-import com.google.android.material.imageview.ShapeableImageView
 
-class CoursesAdapter(private val coursesList : ArrayList<Courses>) :
+class CoursesAdapter(private val coursesList : ArrayList<Courses>,
+                     private val listener: OnClickListenerRecyclerView
+) :
     RecyclerView.Adapter<CoursesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,15 +25,18 @@ class CoursesAdapter(private val coursesList : ArrayList<Courses>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = coursesList[position]
-        holder.titleImage.setImageResource(currentItem.titleImage)
-        holder.titleHeader.text = currentItem.title_heading
-        holder.titleSubheading.text = currentItem.title_subheading
+        holder.bind(coursesList[position], listener)
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val titleImage : ShapeableImageView = itemView.findViewById(R.id.title_image)
-        val titleHeader : TextView = itemView.findViewById(R.id.title_header)
-        val titleSubheading : TextView = itemView.findViewById(R.id.title_subheading)
+        private val binding = ListItemBinding.bind(itemView)
+        fun bind (course: Courses, listener: OnClickListenerRecyclerView) = with(binding) {
+            titleImage.setImageResource(course.titleImage)
+            titleHeader.text = course.title_heading
+            titleSubheading.text = course.title_subheading
+            itemView.setOnClickListener {
+                listener.onClick(course)
+            }
+        }
     }
 }

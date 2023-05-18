@@ -67,7 +67,7 @@ class AuthorizationFragment : Fragment() {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         context,
-                        "Проверьте корректность ",
+                        "Проверьте корректность",
                         Toast.LENGTH_SHORT,
                     ).show()
                     updateUI(null)
@@ -109,7 +109,8 @@ class AuthorizationFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Проверьте, вошел ли пользователь в систему (ненулевое значение),
+        // и соответствующим образом обновите пользовательский интерфейс.
         val currentUser = auth.currentUser
         if (currentUser != null) {
             reload()
@@ -120,10 +121,10 @@ class AuthorizationFragment : Fragment() {
         auth.currentUser!!.reload().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 updateUI(auth.currentUser)
-                Toast.makeText(context, "Reload successful!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Вход выполнен!", Toast.LENGTH_SHORT).show()
             } else {
                 Log.e(TAG, "reload", task.exception)
-                Toast.makeText(context, "Failed to reload user.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Вход не выполнен!", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -20,38 +20,23 @@ class CoursesRepository {
             return CoursesDatabase.getInstance(context)
         }
 
-        fun insertData(context: Context, header: String, subheading: String, content: String) {
+        fun getCourseById(context: Context, courseId: Int): LiveData<CoursesEntity> {
+            coursesDatabase = initializeDB(context)
+            return coursesDatabase!!.coursesDatabaseDao().getCourseById(courseId)
+        }
+
+        /*fun getCourses(context: Context): List<CoursesEntity> {
+            coursesDatabase = initializeDB(context)
+            return coursesDatabase!!.coursesDatabaseDao().getCourses()
+        }*/
+
+        /*fun insertData(context: Context, header: String, subheading: String, content: String) {
             coursesDatabase = initializeDB(context)
             CoroutineScope(IO).launch {
                 val registerDetails = CoursesEntity(header = header, subheading = subheading,
                     content = content)
                 coursesDatabase!!.coursesDatabaseDao().insert(registerDetails)
             }
-        }
-
-        fun getCoursesHeader(context: Context, header: String) : LiveData<CoursesEntity>? {
-            coursesDatabase = initializeDB(context)
-            coursesEntityHeader = coursesDatabase!!.coursesDatabaseDao()
-                .getCoursesByHeader(header)
-
-            return coursesEntityHeader
-        }
-
-        fun getCoursesSubheading(context: Context, subheading: String) : LiveData<CoursesEntity>? {
-            coursesDatabase = initializeDB(context)
-            coursesEntitySubheading = coursesDatabase!!.coursesDatabaseDao()
-                .getCoursesBySubheading(subheading)
-
-            return coursesEntitySubheading
-        }
-
-        fun getCoursesContent(context: Context, content: String) : LiveData<CoursesEntity>? {
-            coursesDatabase = initializeDB(context)
-            coursesEntityContent = coursesDatabase!!.coursesDatabaseDao()
-                .getCoursesByContent(content)
-
-            return coursesEntityContent
-        }
-
+        }*/
     }
 }

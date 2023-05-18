@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeScreenFragment">
+    app:startDestination="@id/authorizationFragment">
 
     <fragment
         android:id="@+id/registerFragment"
@@ -34,5 +34,43 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_authorizationFragment"
             app:destination="@id/authorizationFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_creatorFragment"
+            app:destination="@id/creatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contentFragment"
+        android:name="com.example.simplecourses.homeView.view.ContentFragment"
+        android:label="fragment_content"
+        tools:layout="@layout/fragment_content" />
+    <fragment
+        android:id="@+id/creatorFragment"
+        android:name="com.example.simplecourses.creatorView.view.CreatorFragment"
+        android:label="fragment_creator"
+        tools:layout="@layout/fragment_creator" >
+        <action
+            android:id="@+id/action_creatorFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_creatorFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.simplecourses.secondView.view.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" >
+        <action
+            android:id="@+id/action_secondFragment_to_creatorFragment"
+            app:destination="@id/creatorFragment" />
+        <action
+            android:id="@+id/action_secondFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
     </fragment>
 </navigation>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homeView.view.HomeScreenFragment"
-    android:id="@+id/homeScreenFragment">
+    tools:context=".secondView.view.SecondFragment"
+    android:id="@+id/secondFragmentContainer">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -52,6 +52,5 @@
             app:menu="@menu/bottom_navigation_menu" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,18 +1,19 @@
 package com.example.simplecourses.mainactivity
 
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.simplecourses.R
+import com.example.simplecourses.databinding.MainActivityBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
+    // private lateinit var navController: NavController
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,21 +21,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         auth = FirebaseAuth.getInstance()
-    }
 
-    // [START on_start_check_user]
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if(currentUser != null){
-            reload()
-        }
-    }
-    // [END on_start_check_user]
+        /*val navHostFragment = supportFragmentManager.findFragmentById(R.id.homeScreenFragment) as NavHostFragment
+        navController = navHostFragment.navController
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-    private fun reload() {
-
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)*/
     }
 
 }
