@@ -44,7 +44,6 @@ class CreatorFragment : Fragment() {
                     true
                 }
                 R.id.creatorFragment -> {
-
                     true
                 }
                 else -> false

@@ -144,7 +144,6 @@ class HomeScreenFragment : Fragment(), OnClickListenerRecyclerView {
 
         // Установка аргументов для фрагмента
         targetFragment.arguments = args
-
         findNavController().navigate(R.id.action_homeScreenFragment_to_contentFragment, args)
     }
 

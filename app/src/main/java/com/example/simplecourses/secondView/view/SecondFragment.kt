@@ -43,7 +43,6 @@ class SecondFragment : Fragment() {
                     true
                 }
                 R.id.secondFragment -> {
-
                     true
                 }
                 R.id.creatorFragment -> {
