@@ -82,6 +82,7 @@ class AuthorizationFragment : Fragment() {
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             findNavController().navigate(R.id.action_authorizationFragment_to_homeScreenFragment)
+            findNavController().popBackStack(R.id.homeScreenFragment, false)
         }
     }
 
@@ -109,8 +110,6 @@ class AuthorizationFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // Проверьте, вошел ли пользователь в систему (ненулевое значение),
-        // и соответствующим образом обновите пользовательский интерфейс.
         val currentUser = auth.currentUser
         if (currentUser != null) {
             reload()

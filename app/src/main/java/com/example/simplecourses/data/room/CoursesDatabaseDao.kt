@@ -12,6 +12,9 @@ interface CoursesDatabaseDao {
     @Query("SELECT * FROM Courses WHERE id = :courseId")
     fun getCourseById(courseId: Int): LiveData<CoursesEntity>
 
+    @Query("SELECT id, header, subheading, content FROM Courses WHERE header = :title")
+    fun getContentByTitle(title: String): LiveData<CoursesEntity>?
+
     /*@Query("SELECT * FROM Courses")
     fun getCourses(): List<CoursesEntity>*/
 

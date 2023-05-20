@@ -13,20 +13,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    // private lateinit var navController: NavController
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-
         auth = FirebaseAuth.getInstance()
-
-        /*val navHostFragment = supportFragmentManager.findFragmentById(R.id.homeScreenFragment) as NavHostFragment
-        navController = navHostFragment.navController
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)*/
     }
-
 }

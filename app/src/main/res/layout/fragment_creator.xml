@@ -9,7 +9,9 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -20,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:menu="@menu/menu_top_bar"
                 app:title="@string/app_name"
                 app:titleCentered="true" />
 
@@ -29,13 +30,65 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView
+        android:id="@+id/textCreator1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Проект создан в обучающих целях"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="150dp"
-        app:layout_constraintStart_toStartOf="@+id/coordinatorLayout"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/app_name"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textCreator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Контакты для связи"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCreator1" />
+
+    <TextView
+        android:id="@+id/textCreator3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/emailCreator"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCreator2" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/githubIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="42dp"
+        app:layout_constraintStart_toStartOf="@id/textCreator3"
+        app:layout_constraintTop_toBottomOf="@id/textCreator3"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@drawable/github_circle" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/telegramIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/textCreator3"
+        app:layout_constraintTop_toBottomOf="@id/textCreator3"
+        android:layout_marginEnd="42dp"
+        app:srcCompat="@drawable/telegram_circle" />
 
     <LinearLayout
         android:id="@+id/bottomNavigationMain"

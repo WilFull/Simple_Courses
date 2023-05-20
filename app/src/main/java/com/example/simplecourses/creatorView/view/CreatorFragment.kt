@@ -1,5 +1,7 @@
 package com.example.simplecourses.creatorView.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -50,6 +52,20 @@ class CreatorFragment : Fragment() {
             }
         }
         bottomNavigationView.selectedItemId = bottomNavigationViewModel.selectedItemId
+
+        binding.githubIcon.setOnClickListener {
+            val urlIntent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/WilFull")
+            )
+            startActivity(urlIntent)
+        }
+
+        binding.telegramIcon.setOnClickListener {
+            val urlIntent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://t.me/alex_vyatkin")
+            )
+            startActivity(urlIntent)
+        }
 
     }
 

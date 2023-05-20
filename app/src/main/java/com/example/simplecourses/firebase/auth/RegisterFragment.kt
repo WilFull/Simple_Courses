@@ -69,25 +69,13 @@ class RegisterFragment : Fragment() {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
                         context,
-                        "Проверьте правильность введённых данных",
+                        "Данный пользователь зарегистрирован",
                         Toast.LENGTH_SHORT,
                     ).show()
                     updateUI(null)
                 }
             }
     }
-
-    /*private fun reload() {
-        auth.currentUser!!.reload().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                updateUI(auth.currentUser)
-                Toast.makeText(context, "Reload successful!", Toast.LENGTH_SHORT).show()
-            } else {
-                Log.e(TAG, "reload", task.exception)
-                Toast.makeText(context, "Failed to reload user.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 
     private fun validateForm(): Boolean {
         var valid = true

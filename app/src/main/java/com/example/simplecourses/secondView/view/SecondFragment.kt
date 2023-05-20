@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.simplecourses.R
 import com.example.simplecourses.databinding.FragmentHomeScreenBinding
@@ -14,6 +15,7 @@ import com.example.simplecourses.databinding.FragmentSecondBinding
 import com.example.simplecourses.homeView.viewmodel.BottomNavigationViewModel
 import com.example.simplecourses.secondView.viewModel.SecondViewModel
 import com.google.android.material.navigation.NavigationBarView
+import com.google.firebase.auth.FirebaseAuth
 
 class SecondFragment : Fragment() {
 
@@ -33,6 +35,24 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Получение текущего пользователя
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+            val email = currentUser.email
+            binding.emailUser.text = email
+        } else {
+            binding.emailUser.text = "Пользователь не авторизован"
+        }
+
+        binding.btnExitUser.setOnClickListener {
+            // Выход из аккаунта
+            FirebaseAuth.getInstance().signOut()
+
+            // Переход на экран авторизации с очисткой бэкстека
+            findNavController().popBackStack(R.id.authorizationFragment, false)
+        }
 
         val bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setOnItemSelectedListener { item ->

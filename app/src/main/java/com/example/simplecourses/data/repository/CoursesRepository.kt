@@ -12,9 +12,9 @@ class CoursesRepository {
 
     companion object {
         var coursesDatabase: CoursesDatabase? = null
-        var coursesEntityHeader: LiveData<CoursesEntity>? = null
+        /*var coursesEntityHeader: LiveData<CoursesEntity>? = null
         var coursesEntitySubheading: LiveData<CoursesEntity>? = null
-        var coursesEntityContent: LiveData<CoursesEntity>? = null
+        var coursesEntityContent: LiveData<CoursesEntity>? = null*/
 
         private fun initializeDB(context: Context) : CoursesDatabase {
             return CoursesDatabase.getInstance(context)
@@ -24,6 +24,12 @@ class CoursesRepository {
             coursesDatabase = initializeDB(context)
             return coursesDatabase!!.coursesDatabaseDao().getCourseById(courseId)
         }
+
+        fun getContentByTitle(context: Context, title: String): LiveData<CoursesEntity>? {
+            coursesDatabase = initializeDB(context)
+            return coursesDatabase!!.coursesDatabaseDao().getContentByTitle(title)
+        }
+
 
         /*fun getCourses(context: Context): List<CoursesEntity> {
             coursesDatabase = initializeDB(context)
